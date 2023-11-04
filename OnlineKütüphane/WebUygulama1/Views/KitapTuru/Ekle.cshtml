@@ -1,0 +1,17 @@
+﻿@model KitapTuru
+
+<form method="post">
+    <div class="border p-3 mt-5">
+        <div class="row pb-3">
+            <h2 class="text-dark"> Kitap Türü Ekle</h2>
+        </div>
+        <label asp-for="Ad" class="p-1"></label>
+        <input asp-for="Ad" type="text" class="form-control"  placeholder="Kitap türünü giriniz">
+        <span asp-validation-for="Ad" class="text-danger"></span>
+        <br/>
+        <button type="submit" class="btn btn-success btn-lg" style="width:250px">Kitap Türünü Kaydet</button>
+        <a asp-controller="KitapTuru" asp-action="Index" class="btn btn-lg btn-success" style="width:250px">Kitap Türlerine Geri Dön</a>
+    </div>
+    
+</form>
+

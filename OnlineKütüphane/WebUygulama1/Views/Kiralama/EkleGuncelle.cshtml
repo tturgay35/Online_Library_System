@@ -1,0 +1,58 @@
+﻿@model Kiralama
+
+<form method="post" enctype="multipart/form-data">
+    
+    <div class="row">
+        <div class="col-10">
+
+            <div class="border p-3 mt-5">
+                <div class="row pb-3">
+                    <h2 class="text-dark">@(Model == null ? "Yeni Kiralama" : "Kiralama Güncelle") </h2>
+                </div>
+                <div>
+                    <label asp-for="OgrenciId" class="p-1">Öğrenci Id</label>
+                    <input asp-for="OgrenciId" type="text" class="form-control" placeholder="Kitap Adını giriniz">
+                    <span asp-validation-for="OgrenciId" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="KitapId" class="p-1">Kitap Adı</label>
+                    <select asp-for="KitapId" asp-items="ViewBag.kitapList" type="text" class="form-select" placeholder="Kitap Türünü giriniz">
+
+
+                    </select>
+
+                </div>
+
+
+
+                <br/>
+                @if (Model != null)
+                {
+
+
+                    <button type="submit" class="btn btn-success btn-lg" style="width:250px">Güncelle</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-success btn-lg" style="width:250px">Yeni Kiralama</button>
+                }
+
+                <a asp-controller="Kiralama" asp-action="Index" class="btn btn-lg btn-success" style="width:250px">Kiralamalara Geri Dön</a>
+            </div>
+        </div>
+        <div class="col-2">
+            @if (Model != null)
+            {
+                <br/>
+                <br />
+                
+                <img src="@Model.Kitap.ResimUrl" width="100% " style="border-radius:7px; border:1px solid #bbb9b9"/>
+            }
+        </div>
+    </div>
+       
+    
+    
+
+</form>
+

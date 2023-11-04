@@ -1,0 +1,71 @@
+﻿@model Kitap
+
+<form method="post" enctype="multipart/form-data">
+    <input asp-for="ResimUrl" hidden/>
+    <div class="row">
+        <div class="col-10">
+            <div class="border p-3 mt-5">
+                <div class="row pb-3">
+                    <h2 class="text-dark">@(Model == null ? "Kitap Ekle" : "Kitap Güncelle") </h2>
+                </div>
+                <div>
+                    <label asp-for="KitapAdi" class="p-1">Kitap Adı</label>
+                    <input asp-for="KitapAdi" type="text" class="form-control" placeholder="Kitap Adını giriniz">
+                    <span asp-validation-for="KitapAdi" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="KitapTuruId" class="p-1">Kitap Türü</label>
+                    <select asp-for="KitapTuruId" asp-items="ViewBag.kitapTuruList" type="text" class="form-select" placeholder="Kitap Türünü giriniz">
+                        >
+
+                    </select>
+
+                </div>
+                <div>
+                    <label asp-for="Tanim" class="p-1">Tanım</label>
+                    <input asp-for="Tanim" type="text" class="form-control" placeholder="Kitap Tanımını giriniz">
+                    <span asp-validation-for="Tanim" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Yazar" class="p-1"></label>
+                    <input asp-for="Yazar" type="text" class="form-control" placeholder="KitapYazarını giriniz">
+                    <span asp-validation-for="Yazar" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Fiyat" class="p-1"></label>
+                    <input asp-for="Fiyat" type="text" class="form-control" placeholder="Kitap giriniz">
+                    <span asp-validation-for="Fiyat" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="ResimUrl" class="p-1"></label>
+                    <input type="file" name="file" class="form-control" placeholder="Kitap giriniz">
+                </div>
+
+                <br />
+                @if (Model != null)
+                {
+
+
+                    <button type="submit" class="btn btn-success btn-lg" style="width:250px">Güncelle</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-success btn-lg" style="width:250px">Kitap Ekle</button>
+                }
+
+                <a asp-controller="Kitap" asp-action="Index" class="btn btn-lg btn-success" style="width:250px">Kitaplara Geri Dön</a>
+            </div>
+        </div>
+        <div class="col-2">
+        @if (Model != null)
+        {
+             <br/>
+             <br/>
+            <img src="@Model.ResimUrl" width="100% " style="border-radius:7px; border:1px solid #bbb9b9"/>
+        }
+        </div>
+    </div>
+    
+
+</form>
+

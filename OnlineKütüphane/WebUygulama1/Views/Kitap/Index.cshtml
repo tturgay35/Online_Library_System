@@ -1,0 +1,63 @@
+﻿@using WebUygulama1.Models.Utility
+@model List<Kitap>
+@if (TempData["basarili"] != null)
+{
+    <h4 class="text-success">@TempData["basarili"]</h4>
+}
+
+<div class="container">
+    <div class="row pt-3 pb-4">
+        <h1>Kitaplar</h1>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Görsel</th>
+            <th>Id</th>
+            <th>Kitap Adı</th>
+            <th>Tanım</th>
+            <th>Yazar</th>
+            <th>Fiyat</th>
+            <th>Kitap Türü</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach (var kitap in Model)
+        {
+            <tr>
+                <td align="center" valign="middle">
+                        <img src="@kitap.ResimUrl" style="border-radius:7px; border:1px solid #bbb9b9; max-width:145px;max:275px;" />
+                </td>
+                    <td align ="center" valign="middle">@kitap.Id</td>
+                    <td align="center" valign="middle">@kitap.KitapAdi</td>
+                    <td align="center" valign="middle">@kitap.Tanim</td>
+                    <td align="center" valign="middle">@kitap.Yazar</td>
+                    <td align="center" valign="middle">@kitap.Fiyat</td>
+                    <td align="center" valign="middle">@kitap.kitapTuru.Ad</td>
+
+                @if (User.IsInRole(UserRoles.Role_Admin))
+                {
+                        <td align ="center" valign="middle">
+                        <a asp-controller="Kitap" asp-action="EkleGuncelle" asp-route-id="@kitap.Id" type="button" class="btn btn-success">Düzenle</a>
+                    </td>
+                        <td align="center" valign="middle">
+                        <a asp-controller="Kitap" asp-action="Sil" asp-route-id="@kitap.Id" type="button" class="btn btn-danger">Sil</a>
+                    </td>
+                }
+
+            </tr>
+        }
+        </tbody>
+    </table>
+    @if (User.IsInRole(UserRoles.Role_Admin))
+    {
+        <div class="row pt-3 pb-2">
+            <div>
+                <a asp-controller="Kitap" asp-action="EkleGuncelle" type="button" class="btn btn-success btn-lg">Yeni Kitap Ekle</a>
+            </div>
+        </div>
+    }
+</div>
